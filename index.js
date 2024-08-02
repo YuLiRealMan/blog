@@ -4,6 +4,7 @@ const port =3000
 var article = []
 var articleID =  0;
 app.use(express.static('public'))
+
 app.use(express.urlencoded({ extended: false }))
 
 
@@ -22,6 +23,17 @@ app.get("/about",  (req, res)=>{
 app.get("/contact",  (req, res)=>{
     res.render("contact.ejs")    
 })
+
+
+app.get("/articles/:id", (req, res) => {
+
+    const articleId = req.params.id;
+    
+    res.render("articlepage.ejs", { 
+        title : article[articleId].title,
+        content : article[articleId].content
+     });  
+    })
 
 app.get("/articles",  (req, res)=>{
     res.render("article.ejs")    
@@ -51,3 +63,5 @@ function createArticle(req){
     articleID++;
     return singleArticle;
 }
+
+

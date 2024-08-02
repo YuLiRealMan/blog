@@ -4,20 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classic 90s Website</title>
+
     <link rel="stylesheet" href="/styles/styles.css">
+
+
 
 </head>
 <body>
     <%- include("header.ejs") %>
     <main>
 
-            <section id="contact">
-                <h2>Contact</h2>
-                <p>Email us at <a href="mailto:info@90swebsite.com">info@90swebsite.com</a>.</p>
-            </section>
-            
+        <section id="articlepage">
+            <% if(locals.title && locals.content){ %> 
+            <h2> <%= locals.title %></h2>
+            <p> <%= locals.content %></p>
+         <%}  %>
+        </section>
 
-  
     </main>
     <%- include("footer.ejs") %>
 </body>
