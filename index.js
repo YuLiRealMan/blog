@@ -2,6 +2,7 @@ import express from "express"
 const app = express()
 const port =3000
 var article = []
+var articleID =  0;
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }))
 
@@ -27,13 +28,26 @@ app.get("/articles",  (req, res)=>{
 })
 
 app.post("/submit-article",  (req, res)=>{
-    const singleArticle = new Object();
-    singleArticle.title = req.body["title"];
-    singleArticle.content = req.body["content"];
+
+    var singleArticle = createArticle(req);
+
+
     article.push(singleArticle)
     res.render("article.ejs",{
 
         articles: article
     })
-    console.log(req.body)
+
 })
+
+
+function createArticle(req){
+    const singleArticle = new Object();
+    singleArticle.title = req.body["title"];
+    singleArticle.content = req.body["content"];
+    singleArticle.articleID = articleID;
+    singleArticle.subContent = singleArticle.content.substring(0,200)
+    singleArticle.url= "/article/"+articleID
+    articleID++;
+    return singleArticle;
+}

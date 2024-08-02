@@ -30,8 +30,13 @@
             <% if (locals.articles && articles.length > 0) { %>
                 <% articles.forEach(article => { %>
                     <div class="article-box">
-                        <h3><%= article.title %></h3>
-                        <p><%= article.content %></p>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title"> <%= article.title %></h5>
+                              <p class="card-text"><%= article.subContent %></p>
+                              <a href=<%=article.url%> class="card-link">read more</a>
+                            </div>
+                          </div>
                     </div>
                 <% }); %>
             <% } else { %>
@@ -39,7 +44,13 @@
             <% } %>
         </section>
 
+
+
+
+
     </main>
+    
     <%- include("footer.ejs") %>
+    <script src="../index.js"></script>
 </body>
 </html>
