@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic 90s Website</title>
+    <link rel="stylesheet" href="styles\styles.css">
+    <link rel="stylesheet" href="styles\article.css">
+</head>
+<body>
+    <%- include("header.ejs") %>
+    <main>
+        <section id="article-submission">
+            <h2>Submit an Article</h2>
+            <form action="/submit-article" method="post">
+                <label for="title">Article Title:</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="content">Article Content:</label>
+                <textarea id="content" name="content" rows="10" required></textarea>
+                
+                <button type="submit">Submit Article</button>
+            </form>
+        </section>
+
+
+
+        <section id="articles">
+            <h2>Articles</h2>
+            <% if (locals.articles && articles.length > 0) { %>
+                <% articles.forEach(article => { %>
+                    <div class="article-box">
+                        <h3><%= article.title %></h3>
+                        <p><%= article.content %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No articles submitted yet.</p>
+            <% } %>
+        </section>
+
+    </main>
+    <%- include("footer.ejs") %>
+</body>
+</html>
