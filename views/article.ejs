@@ -28,22 +28,22 @@
         <section id="articles">
             <h2>Articles</h2>
             <% if (locals.articles && articles.length > 0) { %>
-                <% articles.forEach(article => { %>
+                <% for (let i = articles.length - 1; i >= 0; i--) { %>
                     <div class="article-box">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
-                              <h5 class="card-title"> <%= article.title %></h5>
-                              <p class="card-text"><%= article.subContent %></p>
-                              <a href="/articles/<%= article.articleID %>" class="btn btn-primary">Read More</a>
-                              
+                              <h5 class="card-title"><%= articles[i].title %></h5>
+                              <p class="card-text"><%= articles[i].subContent %></p>
+                              <a href="/articles/<%= articles[i].articleID %>" class="btn btn-primary">Read More</a>
                             </div>
                           </div>
                     </div>
-                <% }); %>
+                <% } %>
             <% } else { %>
                 <p>No articles submitted yet.</p>
             <% } %>
         </section>
+        
 
 
 
